@@ -8,12 +8,10 @@ const planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uran
 const planetEl = document.getElementById("planets");
 
 function myFunction(item, index) {
-    planetEl.innerHTML += `${item.charAt(0).toUpperCase() + item.slice(1)} `;
+    planetEl.innerHTML += `${item} `;
 }
 
 planets.forEach(myFunction);
-
-
 
 
 /*
@@ -24,6 +22,12 @@ planets.forEach(myFunction);
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase
 */
 
+const planetCap = document.getElementById("planetsCap");
+
+const capitalPlanets = planets.map(function(name) {
+    planetCap.innerHTML += `${name.charAt(0).toUpperCase() + name.slice(1)} `;
+})
+
 
 /*
     Use the filter method to create a new array that
@@ -33,11 +37,27 @@ planets.forEach(myFunction);
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
 */
 
+const ePlans = planets.filter(planetName => {
+    const listPlanetsWithE = planetName.includes("e");
+    return listPlanetsWithE;
+});
+
+console.log(`Original array: ${planets}`);
+console.log(`New array: ${ePlans}`);
+
+const dispPlanetsE = document.getElementById("planetsE")
+
+for (let i = 0; i < ePlans.length; i++) {
+    dispPlanetsE.innerHTML += `${ePlans[i].charAt(0).toUpperCase() + ePlans[i].slice(1)} `;
+}
+
+
 
 // Use the reduce method to create a sentence from the words in the following array
 const words = ["The", "early", "bird", "might", "get", "the", "worm", "but", "the", "second", "mouse", "gets", "the", "cheese"]
 
 
+const mySentence = (accumulator, currentValue) => accumulator + " " + currentValue;
+const sentenceSection = document.getElementById("sentence");
 
-
-
+sentenceSection.innerHTML = words.reduce(mySentence);
